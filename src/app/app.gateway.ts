@@ -20,13 +20,17 @@ export class AppGateway
 
   constructor() {}
 
-  afterInit(server: any): void {
-    this.logger.log('App Gateway initialized.');
+  afterInit(server: Server): void {
+    this.logger.log('App Gateway initialized...');
   }
 
-  handleDisconnect(client: any): void {}
+  handleDisconnect(client: Socket): void {
+    this.logger.log(`Client connected: ${client.id}...`);
+  }
 
-  handleConnection(client: any, ...args: any[]): void {}
+  handleConnection(client: Socket, ...args: any[]): void {
+    this.logger.log(`Client disconnected: ${client.id}...`);
+  }
 
   @SubscribeMessage('msgToServer')
   handleMessage(client: Socket, payload: string): WsResponse<string> | void {
