@@ -12,3 +12,12 @@ async function bootstrap() {
   });
 }
 bootstrap();
+/* 
+    ? Upgrade Nestjs version 8 ---> 9
+    $ npm install -g @nestjs/cli npm-check-updates
+    $ nest update
+    $ npm-check-updates '/@nestjs*_/' -u // remove the_
+
+    ? Install websockets dependences;
+    $ npm i --save @nestjs/websockets @nestjs/platform-socket.io
+*/
