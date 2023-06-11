@@ -16,7 +16,7 @@ export class AppGateway
 {
   private logger = new Logger('AppGateway');
 
-  // @WebSocketServer() wss: Server;
+  @WebSocketServer() wss: Server;
 
   constructor() {}
 
@@ -34,11 +34,13 @@ export class AppGateway
 
   @SubscribeMessage('msgToServer')
   handleMessage(client: Socket, payload: string): WsResponse<string> | void {
-    // this.wss.emit('msgToClient', payload);
+    console.log('handleMessage', payload);
+    this.wss.emit('msgToClient', payload);
+
     // client.emit('msgToClient', payload);
-    return {
-      event: 'msgToClient',
-      data: 'Hello world!',
-    };
+    // return {
+    //   event: 'msgToClient',
+    //   data: 'Hello world!',
+    // };
   }
 }
