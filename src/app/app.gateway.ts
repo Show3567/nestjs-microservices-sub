@@ -10,7 +10,9 @@ import {
 } from '@nestjs/websockets';
 import { Socket, Server } from 'socket.io';
 
-@WebSocketGateway()
+const port = 4231;
+
+@WebSocketGateway(port)
 export class AppGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
 {
@@ -21,7 +23,7 @@ export class AppGateway
   constructor() {}
 
   afterInit(server: Server): void {
-    this.logger.log('App Gateway initialized...');
+    this.logger.log(`App Gateway initialized on Port ${port}...`);
   }
 
   handleDisconnect(client: Socket): void {
@@ -37,7 +39,7 @@ export class AppGateway
     console.log('handleMessage', payload);
     this.wss.emit('msgToClient', payload);
 
-    // client.emit('msgToClient', payload);
+    client.emit('msgToClient', payload);
     // return {
     //   event: 'msgToClient',
     //   data: 'Hello world!',
