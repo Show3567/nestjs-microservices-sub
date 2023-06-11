@@ -12,7 +12,7 @@ import { Socket, Server } from 'socket.io';
 
 const port = 4231;
 
-@WebSocketGateway(port)
+@WebSocketGateway(port, { cors: true })
 export class AppGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
 {
@@ -39,7 +39,7 @@ export class AppGateway
     console.log('handleMessage', payload);
     this.wss.emit('msgToClient', payload);
 
-    client.emit('msgToClient', payload);
+    // client.emit('msgToClient', payload);
     // return {
     //   event: 'msgToClient',
     //   data: 'Hello world!',
