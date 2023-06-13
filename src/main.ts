@@ -20,4 +20,6 @@ bootstrap();
 
     ? Install websockets dependences;
     $ npm i --save @nestjs/websockets @nestjs/platform-socket.io
+
+    ? Frontend is angular-websocket
 */
