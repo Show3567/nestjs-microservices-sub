@@ -36,7 +36,7 @@ export class AppGateway
 
   @SubscribeMessage('msgToServer')
   handleMessage(client: Socket, payload: string): WsResponse<string> | void {
-    this.wss.emit('msgToClient', payload);
+    this.wss.emit('msgToServer', payload);
 
     // client.emit('msgToClient', payload);
     // return {
