@@ -11,13 +11,17 @@ import {
 import { Socket, Server } from 'socket.io';
 
 const port = 4231;
+const socketPath = '/socket';
 
-@WebSocketGateway(port, { cors: true })
+@WebSocketGateway(port, {
+  cors: true,
+  path: socketPath, // * set the websocket path;
+  transports: ['websocket'],
+})
 export class AppGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
 {
   private logger = new Logger('AppGateway');
-
   @WebSocketServer() wss: Server;
 
   constructor() {}
